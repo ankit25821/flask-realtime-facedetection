@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Face Detection Using Socket IO</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+
+    <h1 class="heading">Realtime Face Detection</h1>
+    <div class="container">
+        {% with default_image=url_for('static', filename='images/no-video.jpg') %}
+        <img id="photo" onerror="if(this.src != '{{default_image}}')this.src='{{default_image}}';">
+        {% endwith %}
+        <div class="controls">
+            <button class="action-btn" onclick="startStream()">Start</button>
+            <button class="action-btn" onclick="stopStream()">Stop</button>
+        </div>
+    </div>
+
+    <!-- Hidden Elements For Better UI & UX -->
+    <video class="hide-from-view" autoplay playsinline id="videoInput"></video>
+    <canvas class="hide-from-view" id="canvas"></canvas>
+
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+
+</body>
+
+</html>
